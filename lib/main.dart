@@ -1,8 +1,86 @@
 import 'package:flutter/material.dart';
 
 void main() {
+  // 변수 variable
+  // string type
+  var name = "헬로우 월드";
+  var name2 = "레드벨렛";
+  print(name);
+  print(name2);
 
-  runApp(const MyApp());
+  // var 로 선언된 변수는 값 변경 가능
+  name = "플러터";
+
+  // 위에서 name 이라는 변수를 선언 했기에, 다시 선언 할 수 없다.
+  // var name = "수정";
+
+  // 정수, Integer
+  int number1 = 10;
+  print(number1);
+
+  int number2 = 15;
+  print(number2);
+
+  // 정수니까 당연히 마이너스 가능
+  int number3 = -20;
+
+  // 정수 연산
+  print(number1 + number2); // 25
+  print(number1 - number2); // -5
+  print(number1 / number2); // 0.6666...
+  print(number1 * number2); // 150
+
+  // 실수, double
+  double num1 = 2.5;
+  double num2 = 0.5;
+
+  print(num1 + num2); // 3
+  print(num1 - num2); // 2
+  print(num1 / num2); // 5
+  print(num1 * num2); // 1.25
+
+  // Boolean
+  bool isTrue = true;
+  bool isFalse = false;
+
+  // String
+  String nam = "red";
+  String nam2 = "good";
+
+  print(nam + nam2); // redgood
+  print(nam + " " + nam2); // red good
+
+  // js 에서 백틱 같은 기능이 가능하다
+  print("${nam} ${nam2}"); // red good
+
+  /*
+  * 그럼 var 와 String 의 차이는?
+  * java 와 마찬가지로 var 는 오른쪽 값을 통해서 데이터 타입을 유추한다.
+  * */
+
+  // var 를 사용 했을때, 타입을 출력 받을 수 있다. 해당 함수는 runtime 에서 어떤 타입인지 출력 해준다.
+  print(nam.runtimeType);
+
+  // dynamic
+  dynamic a = "goog";
+  print(a); // good
+
+  var b = 1;
+  print(b); // b
+
+  /*
+  * 이러면 var 와 dynamic 의 차이는 뭘까.?
+  * runtimeTYpe 을 사용해도 같은 타입이 나오게 된다.
+  * dynamic 은 다른 형태의 타입으로 수정이 가능하다.
+  * var 는 한번 선언된 값의 타입으로 지정되서 타입을 못바꾼다.
+  * */
+
+  // 가능
+  a = 1;
+  // 불가능
+  // b = "string";
+
+  // runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
