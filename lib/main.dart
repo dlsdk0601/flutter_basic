@@ -1,84 +1,65 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  // 변수 variable
-  // string type
-  var name = "헬로우 월드";
-  var name2 = "레드벨렛";
+  // n/a nullable
+  // 변수 타입에 ?를 붙여준다
+  String name = "good";
+  String? name2 = "red";
+
+  // 불가능
+  // name = null;
+  // 가능
+  // name2 = null;
+
   print(name);
   print(name2);
 
-  // var 로 선언된 변수는 값 변경 가능
-  name = "플러터";
+  // n/n non-nullable
+  // ! 도 있는데 이건 절대 null 이 아니라는걸 암시한다.
+  // 위에서 name2 가 null 이라고 했기 때문에 에러가 난다.
+  // 위에서 name2가 string 타입이면 경고가 뜬다. ! 가 의미 없다고
+  print(name2!);
 
-  // 위에서 name 이라는 변수를 선언 했기에, 다시 선언 할 수 없다.
-  // var name = "수정";
+  // DateTime => 시간 데이터 타입
+  DateTime now = DateTime.now();
+  print(now); // 현재 날짜와 시간이 찍힌다.
+  DateTime now2 = DateTime.now();
 
-  // 정수, Integer
-  int number1 = 10;
-  print(number1);
+  // 해당 시간이 찍히는 시간은 해석기가 해당 코드를 읽을 때다.
+  // 앱이 실행될때 딱 찍히는게 아니다. => now != now2
 
-  int number2 = 15;
-  print(number2);
-
-  // 정수니까 당연히 마이너스 가능
-  int number3 = -20;
-
-  // 정수 연산
-  print(number1 + number2); // 25
-  print(number1 - number2); // -5
-  print(number1 / number2); // 0.6666...
-  print(number1 * number2); // 150
-
-  // 실수, double
-  double num1 = 2.5;
-  double num2 = 0.5;
-
-  print(num1 + num2); // 3
-  print(num1 - num2); // 2
-  print(num1 / num2); // 5
-  print(num1 * num2); // 1.25
-
-  // Boolean
-  bool isTrue = true;
-  bool isFalse = false;
-
-  // String
-  String nam = "red";
-  String nam2 = "good";
-
-  print(nam + nam2); // redgood
-  print(nam + " " + nam2); // red good
-
-  // js 에서 백틱 같은 기능이 가능하다
-  print("${nam} ${nam2}"); // red good
-
-  /*
-  * 그럼 var 와 String 의 차이는?
-  * java 와 마찬가지로 var 는 오른쪽 값을 통해서 데이터 타입을 유추한다.
-  * */
-
-  // var 를 사용 했을때, 타입을 출력 받을 수 있다. 해당 함수는 runtime 에서 어떤 타입인지 출력 해준다.
-  print(nam.runtimeType);
-
-  // dynamic
-  dynamic a = "goog";
-  print(a); // good
-
-  var b = 1;
-  print(b); // b
-
-  /*
-  * 이러면 var 와 dynamic 의 차이는 뭘까.?
-  * runtimeTYpe 을 사용해도 같은 타입이 나오게 된다.
-  * dynamic 은 다른 형태의 타입으로 수정이 가능하다.
-  * var 는 한번 선언된 값의 타입으로 지정되서 타입을 못바꾼다.
-  * */
-
-  // 가능
-  a = 1;
+  // final => 이뮤터블 하게 바껴서 변경 불가능한 상수
+  final String name3 = "good";
+  print(name3);
   // 불가능
-  // b = "string";
+  // name3 = "red"
+
+  // const => 역시나 상수라는걸 의미해서 변경 불가능
+  const String name4 = "black";
+  print(name4);
+
+  // 불가
+  // name4 = "white";
+
+  /*
+  * 그럼 final 과 const 의 차이는 뭘까?
+  * final 과 const 의 공통 특징은 데이터 타입을 명시 하지 않아도 된다.
+  * 그럴꺼 같은게, 어차피 상수 니까 한번 선언 되면 수정 할 수 없다.
+    final name5 = "string";
+     const name6 = "string"; => 둘다 가능
+  *
+  * 그럼 차이는 뭐냐
+  * final 은 빌드 타임을 몰라도 되지만, const 는 빌드 타임을 알아야한다.
+  * const DateTime now2 = DateTime.now();
+  * 를 하기 되면 에러가 난다.
+  *
+  * 그러면 빌드 타입이 뭐냐
+  * => 빌드가 될때의 시간이다.
+  * 즉, const 로 선언하면 에러가 나는 이유는 DateTime.now 는 코드가 실행되야 알수 있기 때문에
+  * const 로 선언하면 에러가 난다.
+  *
+  * 쉽게 말해서 당장 알 수 있는 값들만 const 로 가능
+  * */
 
   // runApp(const MyApp());
 }
