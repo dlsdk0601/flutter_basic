@@ -1,36 +1,21 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  int number = 2;
+  // null
+  double? number = 4.0; // nullable
 
-  print(number % 2); // 나머지가 출력된다. => 0
-  print(number % 3); // 나머지가 출력된다. => 2
+  print(number); // 4.0
 
-  number++; // 1 이 더해져서 저장된다.
-  print(number); // 3
+  number = 2.0;
 
-  number--; // 1 을 빼주고 저장된다.
-  print(number); // 2
+  print(number); // 2.0
 
-  double num = 4.0;
+  number = null; // nullable 이라서 가능
+  print(number); // null
 
-  print(num); // 4.0
-
-  num += 1; // 1을 더해서 그걸 num 에 저장
-
-  print(num); // 5.0
-
-  num -= 1; // 1을 빼주고 그걸 num 에 저장
-
-  print(num); // 4.0
-
-  num /= 2; // 2를 나눈고 그걸 num 에 저장
-
-  print(num); // 2.0
-
-  num *= 2; // 2을 곱하고 그걸 num 에 저장
-
-  print(num); // 4.0
+  number ??= 3.0;
+  print(number); // 3 으로 출력된다.
+  // ??= 의 뜻은 왼쪽 변수가 null 이라면 오른쪽 값으로 바뀐다.
 
   // runApp(const MyApp());
 }
