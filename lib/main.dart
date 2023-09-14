@@ -1,25 +1,40 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  // List
-  List<String> black = ["red", "blue", "green"]; // string 으로 이뤄진 배열
-  List<int> numbers = [1, 2, 3, 4, 5]; // int 로 이뤄진 배열
-  // black 의 원소로 int 가 들어 갈 수 없고, number 의 원소로 string 이 들어갈 수 없다.
+  // Map
+  // key / value 로 이뤄진 객체
+  Map<String, String> dic = {
+    "Harry Potter": "해리포터",
+    "Ron Weasley": "론 위즐리",
+    "Hermione Granger": "헤르미온느 그레인져"
+  };
 
-  // index => 순사
-  print(black[1]); // blue
-  print(black[5]); // 에러가 난다. 존재하지 않는 원소이기 때문에
+  print(dic);
 
-  print(black.length); // 3 이 나온다. 배열의 길이를 측정해서 출력
+  Map<String, bool> isHarryPotter = {
+    "Harry Potter": true,
+    "Ron Weasley": true,
+    "IronMan": false
+  };
 
-  black.add("white"); // white 를 push 하는 것.
-  print(black); // white 가 들어간거 확인
+  // Map 에 값 추가
+  isHarryPotter.addAll({"SpiderMan": false});
+  isHarryPotter["Hulk"] = false;
 
-  black.remove("white"); // white 가 삭제된다.
-  print(black); // white 가 삭제된거 확인
+  isHarryPotter["IRonMan"]; // key 에 해당하는 value 를 출력한다.
 
-  print(black.indexOf("red")); // red 의 index 를 출력해준다.
-  print(black.indexOf("dddd")); // 없는 값의 index 를 찾으려 하면 에러가 난다.
+  // value 수정
+  isHarryPotter["SpiderMan"] = true;
+
+  // 삭제
+  isHarryPotter.remove("Harry Potter");
+  print(isHarryPotter);
+
+  // key 만 출력
+  print(isHarryPotter.keys);
+
+  // value 만 출력
+  print(isHarryPotter.values);
 
   // runApp(const MyApp());
 }
