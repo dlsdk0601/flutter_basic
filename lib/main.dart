@@ -1,29 +1,26 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  int num1 = 1;
-  int num2 = 2;
+  // List
+  List<String> black = ["red", "blue", "green"]; // string 으로 이뤄진 배열
+  List<int> numbers = [1, 2, 3, 4, 5]; // int 로 이뤄진 배열
+  // black 의 원소로 int 가 들어 갈 수 없고, number 의 원소로 string 이 들어갈 수 없다.
 
-  print(num1 > num2); // false
-  print(num1 < num2); // true
-  print(num1 <= num2); // true
-  print(num1 >= num2); // false
-  print(num1 == num2); // false
-  print(num1 != num2); // true
+  // index => 순사
+  print(black[1]); // blue
+  print(black[5]); // 에러가 난다. 존재하지 않는 원소이기 때문에
 
-  print(num1 is int); // true
-  print(num1 is String); // false
+  print(black.length); // 3 이 나온다. 배열의 길이를 측정해서 출력
 
-  // not equal
-  print(num1 is! int); // false
-  print(num1 is! String); // true
+  black.add("white"); // white 를 push 하는 것.
+  print(black); // white 가 들어간거 확인
 
-  bool res = 12 > 10 && 1 > 0; // true
-  bool res2 = 12 > 10 && 0 > 1; // false
+  black.remove("white"); // white 가 삭제된다.
+  print(black); // white 가 삭제된거 확인
 
-  bool res3 = 12 > 10 || 1 > 0; // true
-  bool res4 = 12 > 10 || 0 > 1; // true
-  bool res5 = 12 < 10 || 0 > 1; // false
+  print(black.indexOf("red")); // red 의 index 를 출력해준다.
+  print(black.indexOf("dddd")); // 없는 값의 index 를 찾으려 하면 에러가 난다.
+
   // runApp(const MyApp());
 }
 
