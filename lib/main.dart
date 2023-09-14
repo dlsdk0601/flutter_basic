@@ -1,6 +1,37 @@
 import 'package:flutter/material.dart';
 
 void main() {
+  int number = 2;
+
+  print(number % 2); // 나머지가 출력된다. => 0
+  print(number % 3); // 나머지가 출력된다. => 2
+
+  number++; // 1 이 더해져서 저장된다.
+  print(number); // 3
+
+  number--; // 1 을 빼주고 저장된다.
+  print(number); // 2
+
+  double num = 4.0;
+
+  print(num); // 4.0
+
+  num += 1; // 1을 더해서 그걸 num 에 저장
+
+  print(num); // 5.0
+
+  num -= 1; // 1을 빼주고 그걸 num 에 저장
+
+  print(num); // 4.0
+
+  num /= 2; // 2를 나눈고 그걸 num 에 저장
+
+  print(num); // 2.0
+
+  num *= 2; // 2을 곱하고 그걸 num 에 저장
+
+  print(num); // 4.0
+
   // runApp(const MyApp());
 }
 
