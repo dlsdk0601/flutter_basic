@@ -1,22 +1,29 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  // null
-  double? number = 4.0; // nullable
+  int num1 = 1;
+  int num2 = 2;
 
-  print(number); // 4.0
+  print(num1 > num2); // false
+  print(num1 < num2); // true
+  print(num1 <= num2); // true
+  print(num1 >= num2); // false
+  print(num1 == num2); // false
+  print(num1 != num2); // true
 
-  number = 2.0;
+  print(num1 is int); // true
+  print(num1 is String); // false
 
-  print(number); // 2.0
+  // not equal
+  print(num1 is! int); // false
+  print(num1 is! String); // true
 
-  number = null; // nullable 이라서 가능
-  print(number); // null
+  bool res = 12 > 10 && 1 > 0; // true
+  bool res2 = 12 > 10 && 0 > 1; // false
 
-  number ??= 3.0;
-  print(number); // 3 으로 출력된다.
-  // ??= 의 뜻은 왼쪽 변수가 null 이라면 오른쪽 값으로 바뀐다.
-
+  bool res3 = 12 > 10 || 1 > 0; // true
+  bool res4 = 12 > 10 || 0 > 1; // true
+  bool res5 = 12 < 10 || 0 > 1; // false
   // runApp(const MyApp());
 }
 
