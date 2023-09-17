@@ -1,17 +1,36 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  // set
-  // list + 중복 불가
+  int number = 2;
 
-  // 중복으로 값을 넣어도 에러가 나진 않고, 출력할때 자동으로 중복을 제거한다.
-  final Set<String> names = {"code", "Flutter", "Flutter"};
+  if (number % 2 == 0) {
+    print("짝");
+  } else {
+    print("홀");
+  }
 
-  print(names);
+  if (number % 3 == 0) {
+    print("0");
+  } else if (number % 3 == 1) {
+    print("1");
+  } else {
+    print("2");
+  }
 
-  // 해당 값이 존재하는지 확인 하는 방법
-  print(names.contains("Flutter"));
- 
+  // 위 의 else ~ if 를 switch 케이스로 바꾼것 뿐
+  // 완전 똑같은 결과가 나온다.
+  switch (number % 3) {
+    case 0:
+      print("0");
+      break;
+    case 1:
+      print("1");
+      break;
+    default:
+      print("2");
+      break;
+  }
+
   // runApp(const MyApp());
 }
 
