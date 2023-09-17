@@ -1,41 +1,17 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  // Map
-  // key / value 로 이뤄진 객체
-  Map<String, String> dic = {
-    "Harry Potter": "해리포터",
-    "Ron Weasley": "론 위즐리",
-    "Hermione Granger": "헤르미온느 그레인져"
-  };
+  // set
+  // list + 중복 불가
 
-  print(dic);
+  // 중복으로 값을 넣어도 에러가 나진 않고, 출력할때 자동으로 중복을 제거한다.
+  final Set<String> names = {"code", "Flutter", "Flutter"};
 
-  Map<String, bool> isHarryPotter = {
-    "Harry Potter": true,
-    "Ron Weasley": true,
-    "IronMan": false
-  };
+  print(names);
 
-  // Map 에 값 추가
-  isHarryPotter.addAll({"SpiderMan": false});
-  isHarryPotter["Hulk"] = false;
-
-  isHarryPotter["IRonMan"]; // key 에 해당하는 value 를 출력한다.
-
-  // value 수정
-  isHarryPotter["SpiderMan"] = true;
-
-  // 삭제
-  isHarryPotter.remove("Harry Potter");
-  print(isHarryPotter);
-
-  // key 만 출력
-  print(isHarryPotter.keys);
-
-  // value 만 출력
-  print(isHarryPotter.values);
-
+  // 해당 값이 존재하는지 확인 하는 방법
+  print(names.contains("Flutter"));
+ 
   // runApp(const MyApp());
 }
 
