@@ -1,35 +1,55 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  int number = 2;
+  // loop
 
-  if (number % 2 == 0) {
-    print("짝");
-  } else {
-    print("홀");
+  // for
+  for (int i = 0; i < 10; i++) {
+    print(i);
   }
 
-  if (number % 3 == 0) {
-    print("0");
-  } else if (number % 3 == 1) {
-    print("1");
-  } else {
-    print("2");
+  int total = 0;
+  List<int> numbers = [1, 2, 3, 4, 5, 6];
+
+  for (int i = 0; i < numbers.length; i++) {
+    total += i;
+  }
+  print(total);
+
+  // for ~ in 은 배열의 원소를 하나씩 뱉어준다.
+  for (int number in numbers) {
+    total += i;
+    print(number);
   }
 
-  // 위 의 else ~ if 를 switch 케이스로 바꾼것 뿐
-  // 완전 똑같은 결과가 나온다.
-  switch (number % 3) {
-    case 0:
-      print("0");
+  // while
+  total = 0;
+  // total 의 값이 10 보다 작을때 까지만 작동한다.
+  // 잘못 설정하면 평생 돈다.
+  while (total < 10) {
+    total += 1;
+
+    if (total == 3) {
+      // continue 를 만나면 다음 턴으로 바로 넘어간다.
+      // continue 아래의 코드가 실행되지 않고 넘어감.
+      continue;
+    }
+
+    if (total == 5) {
+      // break 를 만나면 loop 를 꺠버린다.
+      // if, do ~ while 도 동일 하다.
       break;
-    case 1:
-      print("1");
-      break;
-    default:
-      print("2");
-      break;
+    }
   }
+
+  print(total);
+
+  // do ~ while
+  // 그냥 while 은 조건을 먼저 확인하고 본문을 실행하는데,
+  // do ~ while 은 본문을 먼저 실행하고 조건을 확인한다.
+  do {
+    total += 1;
+  } while (total < 10);
 
   // runApp(const MyApp());
 }
