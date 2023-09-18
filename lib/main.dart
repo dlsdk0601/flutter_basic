@@ -1,55 +1,24 @@
 import 'package:flutter/material.dart';
 
+enum Status {
+  approved, // 승인
+  pending, // 대기
+  rejected // 거정
+}
+
 void main() {
-  // loop
+  Status status = Status.pending;
 
-  // for
-  for (int i = 0; i < 10; i++) {
-    print(i);
+  if (status == Status.approved) {
+    print("승인");
+  } else if (status == Status.pending) {
+    print("대기");
+  } else {
+    print("거절");
   }
-
-  int total = 0;
-  List<int> numbers = [1, 2, 3, 4, 5, 6];
-
-  for (int i = 0; i < numbers.length; i++) {
-    total += i;
-  }
-  print(total);
-
-  // for ~ in 은 배열의 원소를 하나씩 뱉어준다.
-  for (int number in numbers) {
-    total += i;
-    print(number);
-  }
-
-  // while
-  total = 0;
-  // total 의 값이 10 보다 작을때 까지만 작동한다.
-  // 잘못 설정하면 평생 돈다.
-  while (total < 10) {
-    total += 1;
-
-    if (total == 3) {
-      // continue 를 만나면 다음 턴으로 바로 넘어간다.
-      // continue 아래의 코드가 실행되지 않고 넘어감.
-      continue;
-    }
-
-    if (total == 5) {
-      // break 를 만나면 loop 를 꺠버린다.
-      // if, do ~ while 도 동일 하다.
-      break;
-    }
-  }
-
-  print(total);
-
-  // do ~ while
-  // 그냥 while 은 조건을 먼저 확인하고 본문을 실행하는데,
-  // do ~ while 은 본문을 먼저 실행하고 조건을 확인한다.
-  do {
-    total += 1;
-  } while (total < 10);
+  // String 으로 처리 하지 않는 이유는
+  // 정확하게 저 값을 사용하기 위해서임.
+  // 오타 및 가독성을 위해 사용
 
   // runApp(const MyApp());
 }
