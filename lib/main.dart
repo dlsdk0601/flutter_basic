@@ -1,27 +1,60 @@
 import 'package:flutter/material.dart';
 
-enum Status {
-  approved, // 승인
-  pending, // 대기
-  rejected // 거정
-}
-
 void main() {
-  Status status = Status.pending;
+  addNumbers(10, 20, 31);
 
-  if (status == Status.approved) {
-    print("승인");
-  } else if (status == Status.pending) {
-    print("대기");
-  } else {
-    print("거절");
-  }
-  // String 으로 처리 하지 않는 이유는
-  // 정확하게 저 값을 사용하기 위해서임.
-  // 오타 및 가독성을 위해 사용
-
-  // runApp(const MyApp());
+  // named parameter 는 순서 상관없이 key ~ value 로 넘긴다.
+  addNumbers1(x: 10, y: 20, z: 30);
 }
+
+// 세개의 숫자 x, y, z 를 더하고 홀 짝 판별 함수
+// y에 ? 를 붙이면 null 로 처리 된다.
+// z 는 기본값을 넣은것이다
+// 해당 함수는 파라미터의 순서가 중요하다.
+addNumbers(int x, [int z = 10, int? y]) {
+  int sum = x + z;
+
+  if (sum % 2 == 0) {
+    print("짝수");
+  } else {
+    print("홀수");
+  }
+}
+
+// named parameter - 이름이 있는 파라미터 => 순서가 중요하지 않게 된다.
+// required 를 빼면 옵셔널로 된다.
+// void - 뜻: 공허
+// 함수 앞에는 return 의 타입을 정의한다.
+// void 는 return 이 없는 함수를 의미한다.
+void addNumbers1({required int x, required int y, int z = 30}) {
+  int sum = x + y + z;
+
+  if (sum % 2 == 0) {
+    print("짝수");
+  } else {
+    print("홀수");
+  }
+}
+
+// named 와 positional 파라미터 두개 동시에 가
+void addNumbers2(int x, {required int y, int z = 30}) {
+  int sum = x + y + z;
+
+  if (sum % 2 == 0) {
+    print("짝수");
+  } else {
+    print("홀수");
+  }
+}
+
+// 총합을 return
+int addNumbers3(int x, {required int y, int z = 30}) {
+  int sum = x + y + z;
+  return sum;
+}
+
+// arrow function
+int addNumbers4(int x, {required int y, int z = 30}) => x + y + z;
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
