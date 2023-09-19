@@ -1,38 +1,50 @@
 void main() {
-  // Operation 의 타입을 가지는 add 함수를 operation 에 저장 시키는 것.
-  // 즉 operation 은 add 에서 정의한 함수가 들어간다.
-  Operation operation = add;
+  // flutter 에서도 new 키워드를 안넣어도 된다.
+  // Idol blackPink = Idol();
+  Idol blackPink = Idol("BlackPink", ["A", "B", "C", "D"]);
 
-  int result = operation(10, 20, 30);
+  print(blackPink.name);
+  blackPink.sayHello();
 
-  print(result);
+  Idol bts = Idol("BTS", ["E", "F", "G"]);
+  print(bts.name);
+  bts.sayHello();
 
-  operation = subtract;
-
-  int result2 = operation(30, 20, 10);
-
-  print(result2);
-
-  int result3 = calculate(30, 40, 50, add);
-
-  print(result3);
-
-  int result4 = calculate(30, 40, 50, subtract);
-
-  print(result4);
+  Idol test = Idol.fromList([
+    ["E", "F", "G"],
+    "test"
+  ]); // 이렇게 생성자를 생성해도 된다.
+  // 생성자를 두개 만들 수 있다.
 }
 
-// typedef
-// 함수의 타라미터와 return 타입을 정의한 type
-typedef Operation = int Function(int x, int y, int z);
+// 아이돌 클래스
+class Idol {
+  // 먼저 정의 하는 방법
+  // String name = "블랙핑크";
+  // List<String> memebers = ["A", "B", "C", "D"];
 
-// 더하기 함수
-int add(int x, int y, int z) => z + y + z;
+  // 생성자에서 파라미터를 받아서 대입할 변수
+  String name;
+  List<String> memebers;
 
-// 빼기 함수
-int subtract(int x, int y, int z) => z - y - z;
+  // contructor (positional)
+  // Idol(String name, List<String> members)
+  //     : this.name = name,
+  //       this.memebers = members;
 
-// 계산
-int calculate(int x, int y, int z, Operation operation) {
-  return operation(x, y, z);
+  // 생성자를 이렇게 간단하게 넣을 수 있다. 순서만 맞다면 파라미터를 바로 대입한다.
+  Idol(this.name, this.memebers);
+
+  // named contructor
+  Idol.fromList(List values)
+      : this.memebers = values[0],
+        this.name = values[1];
+
+  void sayHello() {
+    print("hi ${this.name}");
+  }
+
+  void introduce() {
+    print("hello ${this.memebers}");
+  }
 }
