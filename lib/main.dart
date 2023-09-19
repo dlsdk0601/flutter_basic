@@ -1,43 +1,35 @@
 void main() {
-  // 생성자에 const 로 선언한다.
-  Idol blackPink = Idol("BlackPink", ["A", "B", "C", "D"]);
+  _Idol blackPink = _Idol("블랙핑크", ["지수", "제니", "리사", "로제"]);
 
-  // 이렇게 변수를 바꿀 수도 있는데, 못바꾸게 하는게 안전하고 좋다.
-  // class 안에 변수에 final 을 넣어둔다.
-  // blackPink.name = "changed";
-  print(blackPink.name);
-  blackPink.sayHello();
+  print(blackPink.firstMember);
 
-  Idol blackPink2 = Idol("BlackPink", ["A", "B", "C", "D"]);
-  // 사람이 봤을때는 blackPink 와 같다고 본다. 대입한 값이 같으니까,
-  // 근데 코드에서는 두개가 다르다.
+  blackPink.firstMember = "교체";
 
-  print(blackPink == blackPink2); // false
-
-  // 근데 웃긴건 const 로 인스턴스를 만들경우 같다고 나온다.
-  Idol blackPink3 = const Idol("BlackPink", ["A", "B", "C", "D"]);
-  Idol blackPink4 = const Idol("BlackPink", ["A", "B", "C", "D"]);
-
-  print(blackPink3 == blackPink4); // true
+  print(blackPink.firstMember);
 }
 
-class Idol {
-  // final 로 선언하게 되면 인스턴스 밖에서 수정이 불가능
+// getter / setter
+// 데이터를 가져올때 / set 할때 사용
+// 이름앞에 _를 붙이면 private 처리가 된다. 다른 파일에서 Idol 에 접근하지 못한다.
+class _Idol {
   final String name;
-  final List<String> memebers;
+  final List<String> members;
 
-  // const 를 붙이면 인스턴스를 만들때도 앞에 const 를 붙일수 있다.
-  const Idol(this.name, this.memebers);
+  _Idol(this.name, this.members);
 
-  Idol.fromList(List values)
-      : this.memebers = values[0],
-        this.name = values[1];
-
-  void sayHello() {
-    print("hi ${this.name}");
+  // getter () 괄호를 넣지 않는다.
+  // 함수로 만들어도 되는데, 왜 굳이 getter 를 쓰냐
+  // => 늬앙스에 차이가 있다. getter 는 여러개의 데이터를 가공해서 사용하고
+  // 함수는 로직이 들어간다.
+  String get firstMember {
+    return this.members[0];
   }
 
-  void introduce() {
-    print("hello ${this.memebers}");
+  // setter 무조건 하나의 파라미터를 받는다. 두개는 안됨
+  set firstMember(String name) {
+    // list 는 final 로 선언되도, 원소 수정은 가능하다.
+    // 대신에 list 를 통채로 바꾸는건 불가능
+    // this.members = members 불가능
+    this.members[0] = name;
   }
 }
