@@ -1,35 +1,67 @@
 void main() {
-  _Idol blackPink = _Idol("블랙핑크", ["지수", "제니", "리사", "로제"]);
+  print("---------- Idol ----------");
+  Idol apink = Idol(name: "에이핑크", membersCount: 5);
 
-  print(blackPink.firstMember);
+  apink.sayName();
+  apink.sayMembersCount();
 
-  blackPink.firstMember = "교체";
+  print("---------- BOYGROUP ----------");
+  BoyGroup bts = BoyGroup("BTS", 7);
 
-  print(blackPink.firstMember);
+  bts.sayName();
+  bts.sayMembersCount();
+  bts.sayMale();
+
+  print("---------- GIRLGROUP ----------");
+  GirlGroup redVelvet = GirlGroup("레드벨벳", 5);
+
+  redVelvet.sayName();
+  redVelvet.sayMembersCount();
+  redVelvet.sayFemale();
+
+  print("---------- TYPE COMPARISON ----------");
+  print(apink is Idol); // true
+  print(apink is BoyGroup); // false
+  print(apink is GirlGroup); // false
+
+  print("---------- TYPE COMPARISON2 ----------");
+  print(bts is Idol); // true
+  print(bts is BoyGroup); // true
+  print(bts is GirlGroup); // flase
+
+  // 상속을 받게 되면 자식 클래스와 부모 클래스와 타입이 같아짆다.
 }
 
-// getter / setter
-// 데이터를 가져올때 / set 할때 사용
-// 이름앞에 _를 붙이면 private 처리가 된다. 다른 파일에서 Idol 에 접근하지 못한다.
-class _Idol {
-  final String name;
-  final List<String> members;
+// 상속 - ingeritance
+class Idol {
+  String name;
+  int membersCount;
 
-  _Idol(this.name, this.members);
+  Idol({required this.name, required this.membersCount});
 
-  // getter () 괄호를 넣지 않는다.
-  // 함수로 만들어도 되는데, 왜 굳이 getter 를 쓰냐
-  // => 늬앙스에 차이가 있다. getter 는 여러개의 데이터를 가공해서 사용하고
-  // 함수는 로직이 들어간다.
-  String get firstMember {
-    return this.members[0];
+  void sayName() {
+    print("저는 ${this.name} 입니다.");
   }
 
-  // setter 무조건 하나의 파라미터를 받는다. 두개는 안됨
-  set firstMember(String name) {
-    // list 는 final 로 선언되도, 원소 수정은 가능하다.
-    // 대신에 list 를 통채로 바꾸는건 불가능
-    // this.members = members 불가능
-    this.members[0] = name;
+  void sayMembersCount() {
+    print("${this.name}은 ${this.membersCount}명의 멤버가 있습니다.");
+  }
+}
+
+class BoyGroup extends Idol {
+  BoyGroup(String name, int membersCount)
+      : super(name: name, membersCount: membersCount);
+
+  void sayMale() {
+    print("남자 아이돌");
+  }
+}
+
+class GirlGroup extends Idol {
+  GirlGroup(String name, int membersCount)
+      : super(name: name, membersCount: membersCount);
+
+  void sayFemale() {
+    print("여자 아이돌");
   }
 }
