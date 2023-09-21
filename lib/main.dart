@@ -1,67 +1,40 @@
 void main() {
-  print("---------- Idol ----------");
-  Idol apink = Idol(name: "에이핑크", membersCount: 5);
+  TimesTwo tt = TimesTwo(2);
 
-  apink.sayName();
-  apink.sayMembersCount();
+  print(tt.calculate()); // 4
 
-  print("---------- BOYGROUP ----------");
-  BoyGroup bts = BoyGroup("BTS", 7);
+  TimesFour tf = TimesFour(2);
 
-  bts.sayName();
-  bts.sayMembersCount();
-  bts.sayMale();
-
-  print("---------- GIRLGROUP ----------");
-  GirlGroup redVelvet = GirlGroup("레드벨벳", 5);
-
-  redVelvet.sayName();
-  redVelvet.sayMembersCount();
-  redVelvet.sayFemale();
-
-  print("---------- TYPE COMPARISON ----------");
-  print(apink is Idol); // true
-  print(apink is BoyGroup); // false
-  print(apink is GirlGroup); // false
-
-  print("---------- TYPE COMPARISON2 ----------");
-  print(bts is Idol); // true
-  print(bts is BoyGroup); // true
-  print(bts is GirlGroup); // flase
-
-  // 상속을 받게 되면 자식 클래스와 부모 클래스와 타입이 같아짆다.
+  print(tf.calculate()); // 8
 }
 
-// 상속 - ingeritance
-class Idol {
-  String name;
-  int membersCount;
+// method - function
+// override - 덮어쓰다 (우선시하다)
+class TimesTwo {
+  final int number;
 
-  Idol({required this.name, required this.membersCount});
+  TimesTwo(this.number);
 
-  void sayName() {
-    print("저는 ${this.name} 입니다.");
-  }
-
-  void sayMembersCount() {
-    print("${this.name}은 ${this.membersCount}명의 멤버가 있습니다.");
+  // method
+  int calculate() {
+    // 변수가 하나 뿐일 때는 this 생략 가능
+    return number * 2;
   }
 }
 
-class BoyGroup extends Idol {
-  BoyGroup(String name, int membersCount)
-      : super(name: name, membersCount: membersCount);
+class TimesFour extends TimesTwo {
+  TimesFour(int number) : super(number);
 
-  void sayMale() {
-    print("남자 아이돌");
-  }
-}
+  // override 하고 싶을때는 어노테이션으로 선언
+  // 없어도 되긴하지만 가독성을 위해 적어주는게 좋음
+  @override
+  int calculate() {
+    // number 는 부모 클래스에 정의된 변수 이기 때문에
+    // this 가 아닌 super 불러온다. 물론 this 도 되긴하지만, 정석은 super
+    // return super.number * 4;
 
-class GirlGroup extends Idol {
-  GirlGroup(String name, int membersCount)
-      : super(name: name, membersCount: membersCount);
-
-  void sayFemale() {
-    print("여자 아이돌");
+    // 부모 클래스에서 연산된 값으로 연산도 가능
+    // 여기서는 this 쓰면 안됨. 부모의 method 이기 때문에
+    return super.calculate() * 2;
   }
 }
