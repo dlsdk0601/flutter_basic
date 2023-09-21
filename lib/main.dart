@@ -1,17 +1,15 @@
 void main() {
-  List<Map<String, String>> people = [
-    {"name": "A", "group": "blackPink"},
-    {"name": "B", "group": "BTS"},
-    {"name": "C", "group": "BTS"},
-    {"name": "D", "group": "blackPink"}
-  ];
+  List<int> numbers = [1, 3, 5, 7, 9];
 
-  print(people);
-
-  // return 값이 true 이면 그냥 넘기고, false 이면 해당 list 에서 삭제 시킨다.
-  // js 에서 filter 와 같음
-  final result = people.where((element) => element['group'] == "blackPink");
-  final result1 = people.where((element) => element['group'] == "BTS");
+  // js 의 reduce 와 같음
+  final result = numbers.reduce((prev, next) => prev + next);
   print(result);
+
+  List<String> words = ["A", "B", "C"];
+  final result1 = words.reduce((prev, next) => prev + next);
   print(result1);
+
+  // reduce 의 return 타입은 기존 타입과 동일해야한다.
+  // 아래는 에러가 난다. string 타입이었기 때문에, return 도 string 이 되야한다.
+  // words.reduce((prev, next) => prev.length + next.length);
 }
