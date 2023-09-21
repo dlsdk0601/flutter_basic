@@ -1,35 +1,46 @@
 void main() {
-  Employee test1 = Employee("test1");
-  Employee test2 = Employee("test2");
+  BoyGroup bts = BoyGroup("BTS");
+  GirlGroup newJeans = GirlGroup("newJeans");
+  // IdolInterface test = IdolInterface("test"); 에러 난다.
 
-  test1.name = "change1";
-  test2.name = "change2";
-  test1.printNameAndBuilding(); // change1, null
-  test2.printNameAndBuilding(); // change2, null
+  bts.sayName();
+  newJeans.sayName();
 
-  Employee.building = "타워";
-
-  test1.printNameAndBuilding(); // change1, 타워
-  test2.printNameAndBuilding(); // change2, 타워
-  // builing 은 클래스에 귀속 되기때문에, 값을 정해주면 해당 클래스로 부터 생긴 instance 까지
-  // 모두 반영이 된다.
-
-  Employee.printBuilding(); // 타워
+  print(bts is IdolInterface); // true
+  print(bts is BoyGroup); // true
+  print(bts is GirlGroup); // false
 }
 
-class Employee {
-  // static 은 instance 에 귀속되지 않고, class 에 귀속된다.
-  static String? building;
+// interface
+// class 를 만들때 해당 interface 의 형태를 같게 하기 위해 사용
+// 필수적으로 넣어야하는 변수나 method 를 정의 할 수 있다.
+// abstact 를 넣으면 추상화가 되어서 해당 interface 로 instance 를 만들지 못한다.
+// IdolInterface 로 instance 를 만들려는 실수를 방지
+abstract class IdolInterface {
   String name;
 
-  Employee(this.name);
+  IdolInterface(this.name);
 
-  void printNameAndBuilding() {
-    print("$name, $building");
+  // abstract 를 사용하면 함수의 body 를 적지 않아도된다.
+  void sayName();
+}
+
+class BoyGroup implements IdolInterface {
+  String name;
+
+  BoyGroup(this.name);
+
+  void sayName() {
+    print("$name");
   }
+}
 
-  // 이친구도 instance 가 아닌 class 에 귀속되는 method 이다.
-  static void printBuilding() {
-    print("$building");
+class GirlGroup implements IdolInterface {
+  String name;
+
+  GirlGroup(this.name);
+
+  void sayName() {
+    print("$name");
   }
 }
