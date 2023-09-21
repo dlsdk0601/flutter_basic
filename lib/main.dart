@@ -1,20 +1,20 @@
 void main() {
-  Lecture<String, String> lecture1 = Lecture("123", "Lecture1");
-  lecture1.printIdType();
+  List<String> blackPink = ["A", "B", "C", "C"];
 
-  Lecture<int, String> lecture2 = Lecture(123, "lecture2");
-  lecture2.printIdType();
-}
+  print(blackPink);
 
-// generic - 타입을 외부에서 받아와서 사용
-// ts 처럼 <> 안에 타입 사용 가능
-class Lecture<T, X> {
-  final T id;
-  final X name;
+  // map 으로 형 변환
+  print(blackPink.asMap());
+  print(blackPink.toSet());
 
-  Lecture(this.id, this.name);
+  Map blackPinkMap = blackPink.asMap();
 
-  void printIdType() {
-    print(id.runtimeType);
-  }
+  print(blackPinkMap.keys);
+  // (0, 1, 2, 3) => 이런 소괄호는 Iterable, 이걸 List 로 바꾸려면 .toList() 하면됨
+  print(blackPinkMap.values); // (A, B, C, C)
+
+  Set blackPinkSet = Set.from(blackPink);
+  print(blackPinkSet);
+
+  // list, set, map 은 서로간에 형변환이 자유롭게 가능
 }
