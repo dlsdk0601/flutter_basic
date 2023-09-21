@@ -1,40 +1,35 @@
 void main() {
-  TimesTwo tt = TimesTwo(2);
+  Employee test1 = Employee("test1");
+  Employee test2 = Employee("test2");
 
-  print(tt.calculate()); // 4
+  test1.name = "change1";
+  test2.name = "change2";
+  test1.printNameAndBuilding(); // change1, null
+  test2.printNameAndBuilding(); // change2, null
 
-  TimesFour tf = TimesFour(2);
+  Employee.building = "타워";
 
-  print(tf.calculate()); // 8
+  test1.printNameAndBuilding(); // change1, 타워
+  test2.printNameAndBuilding(); // change2, 타워
+  // builing 은 클래스에 귀속 되기때문에, 값을 정해주면 해당 클래스로 부터 생긴 instance 까지
+  // 모두 반영이 된다.
+
+  Employee.printBuilding(); // 타워
 }
 
-// method - function
-// override - 덮어쓰다 (우선시하다)
-class TimesTwo {
-  final int number;
+class Employee {
+  // static 은 instance 에 귀속되지 않고, class 에 귀속된다.
+  static String? building;
+  String name;
 
-  TimesTwo(this.number);
+  Employee(this.name);
 
-  // method
-  int calculate() {
-    // 변수가 하나 뿐일 때는 this 생략 가능
-    return number * 2;
+  void printNameAndBuilding() {
+    print("$name, $building");
   }
-}
 
-class TimesFour extends TimesTwo {
-  TimesFour(int number) : super(number);
-
-  // override 하고 싶을때는 어노테이션으로 선언
-  // 없어도 되긴하지만 가독성을 위해 적어주는게 좋음
-  @override
-  int calculate() {
-    // number 는 부모 클래스에 정의된 변수 이기 때문에
-    // this 가 아닌 super 불러온다. 물론 this 도 되긴하지만, 정석은 super
-    // return super.number * 4;
-
-    // 부모 클래스에서 연산된 값으로 연산도 가능
-    // 여기서는 this 쓰면 안됨. 부모의 method 이기 때문에
-    return super.calculate() * 2;
+  // 이친구도 instance 가 아닌 class 에 귀속되는 method 이다.
+  static void printBuilding() {
+    print("$building");
   }
 }
