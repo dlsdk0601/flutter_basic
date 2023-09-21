@@ -1,15 +1,16 @@
 void main() {
   List<int> numbers = [1, 3, 5, 7, 9];
 
-  // js 의 reduce 와 같음
-  final result = numbers.reduce((prev, next) => prev + next);
-  print(result);
+  // reduce 와 비슷하지만, 어떤 값을 return 해줄지 제네릭으로 정의 해준다.
+  // 파라미터로 초기값과 callback 함수를 넣어준다.
+  final sum = numbers.fold<int>(0, (prev, next) => prev + next);
+  print(sum);
 
-  List<String> words = ["A", "B", "C"];
-  final result1 = words.reduce((prev, next) => prev + next);
-  print(result1);
+  List<String> words = ["A", "B", "C", "D"];
 
-  // reduce 의 return 타입은 기존 타입과 동일해야한다.
-  // 아래는 에러가 난다. string 타입이었기 때문에, return 도 string 이 되야한다.
-  // words.reduce((prev, next) => prev.length + next.length);
+  final sentence = words.fold<String>("", (prev, next) => prev + next);
+  print(sentence);
+
+  final totalLength = words.fold<int>(0, (prev, next) => prev + next.length);
+  print(totalLength);
 }
