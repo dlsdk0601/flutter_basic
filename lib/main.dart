@@ -1,88 +1,44 @@
-void main() {
-  // Validation
-  final minJi = ("민지", 19);
+void main() {}
 
-  // 타입을 실수 했을때 구조 분해는 빌드할떄는 모르지만, 런타임에서 에러가 난다.
-  final (name as String, age as int) = minJi;
+// class 를 final 로 선언 가능
+// extends, implement, mixin 으로 사용 불가능하다.
+// 근데 같은 파일 안에서는 가능
+final class Person {
+  final String name;
+  final int age;
 
-  print(name);
-  print(age);
-
-  switcher("b");
-  switcher("aaa");
-  switcher(["1", "2"]);
-  switcher([10, 20]);
-  switcher([1, 2, 3]);
-  switcher([4, 5, 6]);
-  switcher([4, 5, 6, 7]);
-  switcher([10, "20"]);
-
-  print(switcher2(5, true));
-  print(switcher2(8, true));
-  print(switcher2(7, true));
-  print(switcher2(7, false));
-
-  forLooper();
-
-  ifMatcher();
+  Person({required this.name, required this.age});
 }
 
-void switcher(dynamic any) {
-  switch (any) {
-    case "aaa":
-      print("aaa");
-    case ["1", "2"]:
-      print("match: [1, 2]");
-    case [_, _, _]:
-      print("match: [_, _, _]");
-    case [int a, int b]:
-      print("match: [int $a, int $b]");
-    default:
-      print("no match");
-  }
+// base 로 선언 하면 extends 는 가능, implement 는 불가능
+// base, sealed, final 로 선언된 클래스만 extend 가 가능하다.
+// 당연히 final 은 같은 파일에서만 가능
+base class Person2 {
+  final String name;
+  final int age;
+
+  Person2({required this.name, required this.age});
 }
 
-// 스위치 문도 애로우 함수 가능
-String switcher2(dynamic val, bool condition) => switch (val) {
-      5 => "match: 5",
-      // 두가지 조건을 적을때는 when 으로 사용한다
-      7 when condition => "match 7 and true",
-      _ => "no match"
-    };
+// interface 로 선언하면 implement 만 가능하다.
+interface class Person3 {
+  final String name;
+  final int age;
 
-void forLooper() {
-  final List<Map<String, dynamic>> members = [
-    {"name": "민지", "age": 20},
-    {"name": "해린", "age": 19},
-  ];
-
-  for (final member in members) {
-    print(member["name"]);
-    print(member["age"]);
-  }
-
-  print("=================");
-
-  // loop 안에서도 구조 분해 가능
-  for (final {"name": name, "age": age} in members) {
-    print(name);
-    print(age);
-  }
+  Person3({required this.name, required this.age});
 }
 
-void ifMatcher() {
-  final minji = {"name": "민지", "age": 20};
+// sealed => abstract + final
+// 패턴 매칭을 사용 할수 있다.
+sealed class Person4 {}
 
-  print("=================");
-  if (minji case {"name": String name, "age": int age}) {
-    print(name);
-    print(age);
-  }
+class Idol extends Person4 {}
 
-  // 여기는 출력이 안된다. 왜냐하면 타입이 다르기 떄문
-  // python 에서 walrus 의 기능과 비슷
-  if (minji case {"name": String name, "age": String age}) {
-    print(name);
-    print(age);
-  }
-}
+class Engineer extends Person4 {}
+
+class Chef extends Person4 {}
+
+// 이렇게 입력하면 Person 을 상속받는 클래스중에 Chef 가 있으므로 그걸 캐치해서 에러를 낸다.
+// 때문에 default 처리를 해주던가, Chef 클래스를 추가해준다.
+String whoIsHe(Person person) =>
+    switch (person) { Idol i => "아이돌", Engineer e => "엔지니어", _ => " 나머지" };
