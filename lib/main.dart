@@ -1,57 +1,46 @@
 void main() async {
-  final result = nameAndAge({'name': 'test', 'age': 20});
+  // 당연히 두줄을 한번에 바꿀수 있음.
+  final minJi = ("민지", 20);
+  final (name, age) = minJi;
 
-  print(result);
-  print(result.$1); // String 타입 (반환값의 첫번쨰) 를 기준으로 내장함수를 부른다.
-  print(result.$2);
+  print(name);
+  print(age);
 
-  final result2 = getNewJeans();
+  final newJeans = ["민지", "해린"];
+  final [String a, String b] = newJeans;
+  print(a);
+  print(b);
 
-  for (final item in result2) {
-    print(item.$1);
-    print(item.$2);
-  }
+  // rest 는 한번에 한번만 쓸수 있다.
+  final numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  final [x, y, ..., z] = numbers;
+  print(x); // 1
+  print(y); // 2
+  print(z); // 9
 
-  final result3 = getNewJeansWithType();
+  // _ 를 사용하면 무시 하게 된다.
+  final [xx, _, yy, ...rest, zz, _] = numbers;
+  print(xx); // 1
+  print(yy); // 3
+  print(zz); // 8
+  print(rest); // [4, 5, 6, 7]
 
-  for (final item in result3) {
-    print(item.$1);
-    print(item.$2);
-  }
+  // Map 은 구조 분해 하려면 키 이름을 꼭 써줘야 한다.
+  final minJiMap = {"name": "민지", "age": 19};
+  final {"name": name3, "age": age3} = minJiMap;
+  print(name3);
+  print(age3);
 
-  final result4 = getNewJeansWithType2();
-
-  for (final item in result4) {
-    print(item.name);
-    print(item.age);
-  }
+  // class 의 변수도 구조 분해 가능
+  final minJiIdol = Idol(name: "민지", age: 18);
+  final Idol(name: name4, age: age4) = minJiIdol;
+  print(name4);
+  print(age4);
 }
 
-// record
-(String, int) nameAndAge(Map<String, dynamic> json) {
-  return (json['name'] as String, json['age'] as int);
-}
+class Idol {
+  final String name;
+  final int age;
 
-// 원래라면 주석 처럼 처리해야하는데, 새로운 문법으로 가능
-// List<Map<String, dynamic>> getNewJeans() {
-List<(String, int)> getNewJeans() {
-  return [
-    ("민지", 20),
-    ("혜린", 18),
-  ];
-}
-
-// 이렇게 타입에 이름을 줄수 있다.
-List<(String name, int age)> getNewJeansWithType() {
-  return [
-    ("민지", 20),
-    ("혜린", 18),
-  ];
-}
-
-List<({String name, int age})> getNewJeansWithType2() {
-  return [
-    (name: "민지", age: 20),
-    (name: "혜린", age: 18),
-  ];
+  Idol({required this.name, required this.age});
 }
